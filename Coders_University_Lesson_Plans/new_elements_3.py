@@ -1,5 +1,4 @@
 import streamlit as st
-import random
 import pandas as pd
 import numpy as np
 import altair as alt
@@ -9,6 +8,7 @@ import base64
 import os
 import matplotlib.pyplot as plt
 from datetime import datetime, timedelta
+import secrets
 
 # Set page config
 st.set_page_config(layout="wide", page_title="Streamlit Scavenger Hunt", page_icon="🔍")
@@ -172,7 +172,7 @@ def play_game():
         st.session_state.input_key = 0
 
     if st.session_state.current_element is None:
-        st.session_state.current_element = random.choice(elements)
+        st.session_state.current_element = secrets.choice(elements)
         st.session_state.timer = datetime.now() + timedelta(seconds=30)
 
     remaining_time = max(0, (st.session_state.timer - datetime.now()).total_seconds())

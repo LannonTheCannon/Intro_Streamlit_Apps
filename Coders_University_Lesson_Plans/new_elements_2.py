@@ -1,5 +1,4 @@
 import streamlit as st
-import random
 import pandas as pd
 import numpy as np
 import altair as alt
@@ -8,6 +7,7 @@ import plotly.express as px
 import base64
 import os
 import matplotlib.pyplot as plt
+import secrets
 
 # Set page config
 st.set_page_config(layout="wide", page_title="Streamlit Scavenger Hunt", page_icon="🔍")
@@ -141,7 +141,7 @@ def run_game():
     st.markdown(get_sidebar_style(sidebar_image_base64), unsafe_allow_html=True)
 
     if st.session_state.current_element is None:
-        st.session_state.current_element = random.choice(elements)
+        st.session_state.current_element = secrets.choice(elements)
 
     st.write("What Streamlit function creates this element?")
 
@@ -159,7 +159,7 @@ def run_game():
 
     with col2:
         if st.button("Skip"):
-            st.session_state.current_element = random.choice(elements)
+            st.session_state.current_element = secrets.choice(elements)
             st.rerun()
 
     # Display score and progress
@@ -190,7 +190,7 @@ def check_answer(user_guess):
         st.info(f"Description: {st.session_state.current_element[1]}")
 
     st.session_state.questions_asked += 1
-    st.session_state.current_element = random.choice(elements)
+    st.session_state.current_element = secrets.choice(elements)
     time.sleep(2)  # Give user time to see the result
     st.rerun()
 

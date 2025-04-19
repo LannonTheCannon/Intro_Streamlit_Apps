@@ -1,5 +1,5 @@
 import streamlit as st
-import random
+import secrets
 
 st.title("Guess the Streamlit Element!")
 
@@ -18,7 +18,7 @@ if 'score' not in st.session_state:
     st.session_state.score = 0
 
 if 'current_element' not in st.session_state:
-    st.session_state.current_element = random.choice(elements)
+    st.session_state.current_element = secrets.choice(elements)
 
 st.write("What Streamlit function creates this element?")
 
@@ -50,7 +50,7 @@ if st.button("Submit"):
     else:
         st.error(f"Not quite. It was {st.session_state.current_element[0]}")
 
-    st.session_state.current_element = random.choice(elements)
+    st.session_state.current_element = secrets.choice(elements)
     st.rerun()
 
 st.write(f"Current Score: {st.session_state.score}")
