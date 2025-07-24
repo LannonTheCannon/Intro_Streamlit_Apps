@@ -82,8 +82,8 @@ from streamlit_elements import elements, dashboard, mui, nivo
 import plotly.graph_objects as go
 import plotly.express as px
 from datetime import datetime, timedelta
-import random 
 import json
+import secrets
 
 def load_patient_data():
     with open('./data/patient_info_123.json', 'r') as f:
@@ -109,7 +109,7 @@ def generate_dummy_heatmap_data(num_visits=30):
                 "data": [
                     {
                         "x": visit_date,
-                        "y": max(1, min(10, random.gauss(5, 2) - visit * 0.1))  # Gradually decreasing trend
+                        "y": max(1, min(10, secrets.SystemRandom().gauss(5, 2) - visit * 0.1))  # Gradually decreasing trend
                     }
                 ]
             }
@@ -130,16 +130,16 @@ def generate_progressive_pain_data(num_visits=30):
         visit_date = (start_date + timedelta(days=visit*7)).strftime("%Y-%m-%d")
         
         # Simulate decreasing burning and tingling
-        burning = max(1, min(10, 8 - visit * 0.2 + random.uniform(-0.5, 0.5)))
-        tingling = max(1, min(10, 9 - visit * 0.25 + random.uniform(-0.5, 0.5)))
+        burning = max(1, min(10, 8 - visit * 0.2 + secrets.SystemRandom().uniform(-0.5, 0.5)))
+        tingling = max(1, min(10, 9 - visit * 0.25 + secrets.SystemRandom().uniform(-0.5, 0.5)))
         
         # Simulate increasing aching
-        aching = min(10, max(1, 3 + visit * 0.15 + random.uniform(-0.5, 0.5)))
+        aching = min(10, max(1, 3 + visit * 0.15 + secrets.SystemRandom().uniform(-0.5, 0.5)))
         
         # Other pain types with some random fluctuation
-        sharp = max(1, min(10, 5 + random.uniform(-1, 1)))
-        shooting = max(1, min(10, 4 + random.uniform(-1, 1)))
-        numbness = max(1, min(10, 3 + random.uniform(-1, 1)))
+        sharp = max(1, min(10, 5 + secrets.SystemRandom().uniform(-1, 1)))
+        shooting = max(1, min(10, 4 + secrets.SystemRandom().uniform(-1, 1)))
+        numbness = max(1, min(10, 3 + secrets.SystemRandom().uniform(-1, 1)))
 
         visit_data = [
             {"id": "Sharp", "data": [{"x": visit_date, "y": sharp}]},

@@ -1,5 +1,5 @@
 import streamlit as st
-import random
+import secrets
 
 # Quiz questions and answers
 quiz_data = [
@@ -103,7 +103,7 @@ def main():
         st.session_state.current_question = 0
         st.session_state.score = 0
         st.session_state.quiz_finished = False
-        random.shuffle(quiz_data)
+        secrets.SystemRandom().shuffle(quiz_data)
 
     if not st.session_state.quiz_finished:
         question = quiz_data[st.session_state.current_question]
